@@ -4,6 +4,7 @@
 //
 #include "Dxlib.h"
 #include "main.h"
+#include "Stage.h"
 
 //変数
 int gameCounte;
@@ -39,11 +40,52 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	return 0;
 	DxLib_End();
 }
-
+// ゲームメイン
 void GameMain(void)
 {
 	GameDraw();
 }
+//　初期化
+bool SystemInit(void)
+{
+	StageGameDraw();
+}
+//　初期化シーン
+void InitScene(void)
+{
+
+}
+//　タイトルシーン
+void TitleScene(void)
+{
+
+}
+//　タイトル描画
+void TitleDraw(void)
+{
+
+}
+//　ゲームオーバーシーン
+void GameOverScene(void)
+{
+
+}
+//　ゲームオーバー描画
+void GameOverDraw(void)
+{
+
+}
+// リザルトシーン
+void RizartScene(void)
+{
+
+}
+// リザルト描画
+void RizartDraw(void)
+{
+
+}
+//　ゲーム描画
 void GameDraw(void)
 {
 

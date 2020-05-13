@@ -11,3 +11,15 @@
 // プロトタイプ宣言
 void GameMain(void);
 void GameDraw(void);
+
+bool SystemInit(void);
+
+void InitScene(void);
+
+void TitleScene(void);
+void TitleDraw(void);
+void RizartScene(void);
+void RizartDraw(void);
+
+void GameOverScene(void);
+void GameOverDraw(void);
