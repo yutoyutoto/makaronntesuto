@@ -23,6 +23,7 @@ void StageSystemInit(void)
 void StageGameDraw(void)
 {
 	DrawGraph(CHIP_SIZE_X, CHIP_SIZE_Y, mapImage[40], true);
+	
 }
 
 void SetMapData()

@@ -6,9 +6,10 @@
 #include "main.h"
 #include "Stage.h"
 
+
 //変数
 int gameCounte;
-
+int jyu = LoadGraph("jyuu2.bmp");
 // ========WinMain関数
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -32,7 +33,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 		// メイン処理
 		GameMain();
-
 		gameCounte++;
 		ScreenFlip(); // 裏画面を表画面に瞬間コピー
 
@@ -49,7 +49,7 @@ void GameMain(void)
 bool SystemInit(void)
 {
 	StageGameDraw();
-	return false;
+	return 0;
 }
 //　初期化シーン
 void InitScene(void)
@@ -90,4 +90,5 @@ void RizartDraw(void)
 void GameDraw(void)
 {
 	StageGameDraw();
+	DrawGraph(30, 20, jyu, true);
 }
