@@ -49,6 +49,7 @@ void GameMain(void)
 bool SystemInit(void)
 {
 	StageGameDraw();
+	return false;
 }
 //　初期化シーン
 void InitScene(void)
@@ -88,6 +89,5 @@ void RizartDraw(void)
 //　ゲーム描画
 void GameDraw(void)
 {
-
-	//DrawFormatString(0, 0, GetColor(255, 255, 255), "わかながのHP -%d",gameCounte);
+	StageGameDraw();
 }
