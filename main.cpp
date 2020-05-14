@@ -48,8 +48,8 @@ void GameMain(void)
 //　初期化
 bool SystemInit(void)
 {
-	StageGameDraw();
-	return 0;
+	StageSystemInit();
+	return true;
 }
 //　初期化シーン
 void InitScene(void)
