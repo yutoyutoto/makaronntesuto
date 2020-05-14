@@ -18,7 +18,7 @@ int satage[MAP_Y][MAP_X] =
 void StageSystemInit(void)
 {
 	//
-	LoadDivGraph("image/map.bmp", 40, 10, 4, CHIP_SIZE_X, CHIP_SIZE_Y, mapImage);
+	LoadDivGraph("image/map.bmp",40, 10, 4, CHIP_SIZE_X, CHIP_SIZE_Y, mapImage);
 }
 void StageGameDraw(void)
 {
