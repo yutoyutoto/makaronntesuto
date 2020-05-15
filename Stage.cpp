@@ -33,7 +33,7 @@ XY mapSize;
 XY mapPos;
 void StageSystemInit(void)
 {
-	// マップの描画
+	// マップの画像読み込み
 	LoadDivGraph("image/map.bmp", 40, 10, 4, CHIP_SIZE_X, CHIP_SIZE_Y, mapImage);
 	for (int y = 0; y < MAP_Y; y++)
 	{
@@ -45,6 +45,7 @@ void StageSystemInit(void)
 	mapSize.x = MAP_X;
 	mapSize.y = MAP_Y;
 }
+// ステージの描画
 void StageGameDraw(void)
 {
 	for (int y = 0; y < mapSize.y; y++)
