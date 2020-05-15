@@ -9,7 +9,7 @@
 
 //変数
 int gameCounte;
-int jyu = LoadGraph("jyuu2.bmp");
+//int jyu;
 // ========WinMain関数
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -25,7 +25,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	gameCounte = 0;
 
 	//---------　変数の初期化 ---------
-
+	SystemInit();
 	//--------- ゲームループ　---------
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
@@ -36,6 +36,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		gameCounte++;
 		ScreenFlip(); // 裏画面を表画面に瞬間コピー
 
+		if(CheckHitKey(KEY_INPUT_RIGHT))
+		{
+			mapPos.x += 10;
+		}
+		if (CheckHitKey(KEY_INPUT_LEFT))
+		{
+			mapPos.x -= 10;
+		}
 	}
 	return 0;
 	DxLib_End();
@@ -49,6 +57,7 @@ void GameMain(void)
 bool SystemInit(void)
 {
 	StageSystemInit();
+	//jyu = LoadGraph("image/jyuu2.bmp");
 	return true;
 }
 //　初期化シーン
@@ -90,5 +99,5 @@ void RizartDraw(void)
 void GameDraw(void)
 {
 	StageGameDraw();
-	DrawGraph(30, 20, jyu, true);
+	//DrawGraph(30, 20, jyu, true);
 }
