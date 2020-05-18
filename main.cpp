@@ -5,7 +5,8 @@
 #include "Dxlib.h"
 #include "main.h"
 #include "Stage.h"
-
+#include "enemy.h"
+#include "player.h"
 
 //ïœêî
 int gameCounte;
@@ -57,6 +58,8 @@ void GameMain(void)
 bool SystemInit(void)
 {
 	StageSystemInit();
+	PlayerInit();
+	EnemyInt();
 	//jyu = LoadGraph("image/jyuu2.bmp");
 	return true;
 }
@@ -99,5 +102,7 @@ void RizartDraw(void)
 void GameDraw(void)
 {
 	StageGameDraw();
+	EnenmyDraw();
+	PlayerDraw();
 	//DrawGraph(30, 20, jyu, true);
 }

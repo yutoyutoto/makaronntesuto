@@ -3,8 +3,14 @@
 
 // 定数宣言
 #define PLAYER_MAX 3				// プレイヤー数
+#define PLAYER_MAX 3				// プレイヤー数
 
-// ベクトル用の構造体
+#define PLAYER_SIZE_X 32			// プレイヤーの横サイズ
+#define PLAYER_SIZE_Y 32			// プレイヤーの縦サイズ
+
+#define ANIM_IMAGE_MAX 3
+
+
 struct Pos
 {
 	int x;			// X座標
@@ -19,5 +25,7 @@ struct Player
 
 
 // 関数のプロトタイプ宣言
-void playerDraw(void);
+void PlayerDraw(void);
+void PlayerInit(void);
+void PlayerMove(void);
 
