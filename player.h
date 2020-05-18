@@ -29,3 +29,5 @@ void PlayerDraw(void);
 void PlayerInit(void);
 void PlayerMove(void);
 
+extern  Player playerpos;
+

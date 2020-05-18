@@ -1,7 +1,7 @@
 #include "Dxlib.h"
 #include "main.h"
 #include "player.h"
-
+#include "Stage.h"
 // •Ï”‚Ì’è‹`
 Player player;
 Pos playerSpeed;
@@ -35,7 +35,7 @@ void PlayerInit(void)
 		rtnFlag = false;
 	}*/
 	player.pos.x = 0;
-	player.pos.y = 500;
+	player.pos.y = 560;
 	keyFlag = 0;
 
 	playerSpeed.x = 5;
