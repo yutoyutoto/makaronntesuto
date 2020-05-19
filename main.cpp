@@ -102,7 +102,7 @@ void RizartDraw(void)
 void GameDraw(void)
 {
 	StageGameDraw();
-	EnenmyDraw();
+	EnemyDraw();
 	PlayerDraw();
 	//DrawGraph(30, 20, jyu, true);
 }

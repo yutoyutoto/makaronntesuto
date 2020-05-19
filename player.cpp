@@ -20,7 +20,7 @@ void PlayerInit(void)
 	bool rtnFlag = true;
 	for (int j = 0; j < ANIM_IMAGE_MAX; j++)
 	{
-		if (LoadDivGraph("image/murabito.bmp", ANIM_IMAGE_MAX, ANIM_IMAGE_MAX, 1,
+		if (LoadDivGraph("image/murabito2.bmp", ANIM_IMAGE_MAX, ANIM_IMAGE_MAX, 1,
 			PLAYER_SIZE_X, PLAYER_SIZE_Y, &playerImage[0][j]) == -1)
 		{
 			AST();
@@ -35,7 +35,7 @@ void PlayerInit(void)
 		rtnFlag = false;
 	}*/
 	player.pos.x = 0;
-	player.pos.y = 560;
+	player.pos.y = 520;
 	keyFlag = 0;
 
 	playerSpeed.x = 5;
