@@ -2,10 +2,10 @@
 //#pragma once
 
 // 定数宣言
-#define PLAYER_MAX 3				// プレイヤー数
+#define PLAYER_MAX 4				// プレイヤー数
 
-#define PLAYER_SIZE_X 65			// プレイヤーの横サイズ
-#define PLAYER_SIZE_Y 65			// プレイヤーの縦サイズ
+#define PLAYER_SIZE_X 32			// プレイヤーの横サイズ
+#define PLAYER_SIZE_Y 32			// プレイヤーの縦サイズ
 
 #define ANIM_IMAGE_MAX 3
 

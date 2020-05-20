@@ -46,10 +46,12 @@ enum CHAR_ID
 };
 
 
-// プレイヤー
+// 敵
 enum ENEMY {
-	ENEMY1,
-	ENEMY2,
+	ENEMY_ID_MAOU,
+	ENEMY_ID_MEIDO,
+	ENEMY_ID_NINGYOU,
+	ENEMY_ID_MAMONO,
 	ENEMY_MAX
 }; struct CHARACTER {
 	XY pos;			//敵の位置（中心）
