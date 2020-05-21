@@ -34,6 +34,7 @@ struct XY_F
 enum SCN_ID
 {
 	SCN_ID_TITLE,			// タイトル
+	SCN_ID_CHARSEL,			// セレクト
 	SCN_ID_GAME,			// ゲームシーン
 	SCN_ID_GAMEOVER,		// ゲームオ－バー
 	SCN_ID_MAX
@@ -83,14 +84,10 @@ bool SystemInit(void);
 
 void InitScene(void);
 
-void TitleScene(void);
-void TitleDraw(void);
-void RizartScene(void);
-void RizartDraw(void);
-
-void GameOverScene(void);
-void GameOverDraw(void);
-
 void GetKeyState(void);
 
+// extern宣言
 extern SCN_ID scnID;
+extern bool spacekeyFlag;
+extern bool spacekeyFlagOld;
+extern int flamCnt;

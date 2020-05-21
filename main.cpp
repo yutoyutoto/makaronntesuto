@@ -7,6 +7,9 @@
 #include "Stage.h"
 #include "enemy.h"
 #include "player.h"
+#include"GameOverScene.h"
+#include"TitleScene.h"
+#include"SelectScene.h"
 
 //変数
 
@@ -43,7 +46,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		GameMain();
 		gameCounte++;
 		ScreenFlip(); // 裏画面を表画面に瞬間コピー
-
+		TitleScene();
 		if(CheckHitKey(KEY_INPUT_RIGHT))
 		{
 			mapPos.x += 10;
@@ -53,6 +56,32 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			mapPos.x -= 10;
 		}
 	}
+
+	GetKeyState();
+
+	switch (scnID)
+	{
+	case SCN_ID_TITLE:
+		TitleScene();
+		break;
+	case SCN_ID_CHARSEL:
+		SelectScene();
+		break;
+	case SCN_ID_GAME:
+		GameMain();
+		break;
+	case SCN_ID_GAMEOVER:
+		GameOverScene();
+		break;
+	default:
+		AST();
+		break;
+	}
+	//TitleInit();
+	//GameMain();
+
+	gameCounte++;
+	ScreenFlip();
 	return 0;
 	DxLib_End();
 }
@@ -61,12 +90,29 @@ void GameMain(void)
 {
 	GameDraw();
 }
+
+void GetKeyState(void)
+{
+	spacekeyFlagOld = spacekeyFlag;
+	spacekeyFlag = (bool)CheckHitKey(KEY_INPUT_SPACE);
+}
+
 //　初期化
 bool SystemInit(void)
 {
+
+	// 返り値用変数
+	bool rtnFlag = true;
 	StageSystemInit();
 	playerInit();
+	TitleInit();
+	GameOverInit();
 	EnemyInt();
+
+	spacekeyFlag = false;
+	spacekeyFlagOld = false;
+	SelInit();
+	scnID = SCN_ID_TITLE;
 	//jyu = LoadGraph("image/jyuu2.bmp");
 	return true;
 }
@@ -75,44 +121,18 @@ void InitScene(void)
 {
 
 }
-//　タイトルシーン
-void TitleScene(void)
-{
 
-}
-//　タイトル描画
-void TitleDraw(void)
-{
 
-}
-//　ゲームオーバーシーン
-void GameOverScene(void)
-{
 
-}
-//　ゲームオーバー描画
-void GameOverDraw(void)
-{
-
-}
-// リザルトシーン
-void RizartScene(void)
-{
-
-}
-// リザルト描画
-void RizartDraw(void)
-{
-
-}
 //　ゲーム描画
 void GameDraw(void)
 {
 	//ScreenFlip();
-	
+	TitleDraw();
 	StageGameDraw();
 	EnemyDraw();
 	playerDraw();
+	GameOverDraw();
 	//ClsDrawScreen();
 
 	

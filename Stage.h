@@ -8,6 +8,6 @@
 
 void StageGameDraw(void);
 void StageSystemInit(void);
-void SetMapData();
+//void SetMapData(void);
 
 extern XY mapPos;
