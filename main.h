@@ -7,6 +7,8 @@
 // 定数宣言
 #define SCREEN_SIZE_X 800
 #define SCREEN_SIZE_Y 600
+#define ANIM_IMAGE_MAX 4			// アニメーション数
+#define ANIM_SPEED 30				// アニメーション速度
 #ifdef _DEBUG
 #define AST() {\
 	CHAR ast_mes[256];\
@@ -88,3 +90,7 @@ void RizartDraw(void);
 
 void GameOverScene(void);
 void GameOverDraw(void);
+
+void GetKeyState(void);
+
+extern SCN_ID scnID;

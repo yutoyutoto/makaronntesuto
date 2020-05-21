@@ -9,7 +9,14 @@
 #include "player.h"
 
 //変数
+
+//変数
+SCN_ID scnID;					// ｼｰﾝ管理
 int gameCounte;
+
+bool spacekeyFlag;				// スペースキーの状態	
+bool spacekeyFlagOld;			// 1フレーム前のスペースキーの状態
+
 //int jyu;
 // ========WinMain関数
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -58,7 +65,7 @@ void GameMain(void)
 bool SystemInit(void)
 {
 	StageSystemInit();
-	PlayerInit();
+	playerInit();
 	EnemyInt();
 	//jyu = LoadGraph("image/jyuu2.bmp");
 	return true;
@@ -101,8 +108,13 @@ void RizartDraw(void)
 //　ゲーム描画
 void GameDraw(void)
 {
+	//ScreenFlip();
+	
 	StageGameDraw();
 	EnemyDraw();
-	PlayerDraw();
+	playerDraw();
+	//ClsDrawScreen();
+
+	
 	//DrawGraph(30, 20, jyu, true);
 }

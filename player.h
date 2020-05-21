@@ -7,7 +7,7 @@
 #define PLAYER_SIZE_X 32			// プレイヤーの横サイズ
 #define PLAYER_SIZE_Y 32			// プレイヤーの縦サイズ
 
-#define ANIM_IMAGE_MAX 3
+#define ANIM_IMAGE_MAX 4
 
 
 struct Pos
@@ -24,9 +24,12 @@ struct Player
 
 
 // 関数のプロトタイプ宣言
-void PlayerDraw(void);
-void PlayerInit(void);
-void PlayerMove(void);
+void playerInit(void);
+void playerMove(void);
+void playerDraw(void);
 
-extern  Player playerpos;
-
+// extern宣言
+extern int playerImage[CHAR_ID_MAX][ANIM_IMAGE_MAX];
+extern int playerAnimCnt;
+extern int kenImage;
+extern int tueImage;
