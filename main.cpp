@@ -19,7 +19,7 @@ int gameCounte;
 
 bool spacekeyFlag;				// スペースキーの状態	
 bool spacekeyFlagOld;			// 1フレーム前のスペースキーの状態
-
+int flamCnt;
 //int jyu;
 // ========WinMain関数
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -47,7 +47,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		gameCounte++;
 		ScreenFlip(); // 裏画面を表画面に瞬間コピー
 		TitleScene();
-		if(CheckHitKey(KEY_INPUT_RIGHT))
+		if (CheckHitKey(KEY_INPUT_RIGHT))
 		{
 			mapPos.x += 10;
 		}
@@ -55,41 +55,56 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		{
 			mapPos.x -= 10;
 		}
+
+		GetKeyState();
+
+		switch (scnID)
+		{
+		case SCN_ID_TITLE:
+			TitleScene();
+			break;
+		case SCN_ID_CHARSEL:
+			SelectScene();
+			break;
+		case SCN_ID_GAME:
+			GameMain();
+			break;
+		case SCN_ID_GAMEOVER:
+			GameOverScene();
+			break;
+		default:
+			AST();
+			break;
+		}
+		//TitleInit();
+		//GameMain();
+
+		gameCounte++;
+		ScreenFlip();
 	}
-
-	GetKeyState();
-
-	switch (scnID)
-	{
-	case SCN_ID_TITLE:
-		TitleScene();
-		break;
-	case SCN_ID_CHARSEL:
-		SelectScene();
-		break;
-	case SCN_ID_GAME:
-		GameMain();
-		break;
-	case SCN_ID_GAMEOVER:
-		GameOverScene();
-		break;
-	default:
-		AST();
-		break;
-	}
-	//TitleInit();
-	//GameMain();
-
-	gameCounte++;
-	ScreenFlip();
 	return 0;
 	DxLib_End();
 }
-// ゲームメイン
-void GameMain(void)
+
+//　初期化
+void SystemInit(void)
 {
-	GameDraw();
+
+	// 返り値用変数
+	bool rtnFlag = true;
+
+	spacekeyFlag = false;
+	spacekeyFlagOld = false;
+	playerInit();
+	SelInit();
+	TitleInit();
+	StageSystemInit();
+	GameOverInit();
+	EnemyInt();
+	scnID = SCN_ID_TITLE;
+	//jyu = LoadGraph("image/jyuu2.bmp");
 }
+
 
 void GetKeyState(void)
 {
@@ -97,44 +112,22 @@ void GetKeyState(void)
 	spacekeyFlag = (bool)CheckHitKey(KEY_INPUT_SPACE);
 }
 
-//　初期化
-bool SystemInit(void)
+
+// ゲームメイン
+void GameMain(void)
 {
-
-	// 返り値用変数
-	bool rtnFlag = true;
-	StageSystemInit();
-	playerInit();
-	TitleInit();
-	GameOverInit();
-	EnemyInt();
-
-	spacekeyFlag = false;
-	spacekeyFlagOld = false;
-	SelInit();
-	scnID = SCN_ID_TITLE;
-	//jyu = LoadGraph("image/jyuu2.bmp");
-	return true;
+	GameDraw();
 }
-//　初期化シーン
-void InitScene(void)
-{
-
-}
-
-
 
 //　ゲーム描画
 void GameDraw(void)
 {
-	//ScreenFlip();
-	TitleDraw();
+	//TitleDraw();
+	
 	StageGameDraw();
 	EnemyDraw();
 	playerDraw();
 	GameOverDraw();
 	//ClsDrawScreen();
-
-	
 	//DrawGraph(30, 20, jyu, true);
 }

@@ -55,6 +55,7 @@ void StageGameDraw(void)
 			DrawGraph(x * CHIP_SIZE_X + (-mapPos.x), y * CHIP_SIZE_Y + (-mapPos.y), mapImage[map[y][x]], true);
 		}
 	}
+	ScreenFlip();
 }
 // プレイヤーとマップの移動
 XY PosToIndex(XY pos)

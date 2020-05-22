@@ -80,9 +80,9 @@ enum ENEMY {
 void GameMain(void);
 void GameDraw(void);
 
-bool SystemInit(void);
+void SystemInit(void);
 
-void InitScene(void);
+//void InitScene(void);
 
 void GetKeyState(void);
 

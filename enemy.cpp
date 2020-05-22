@@ -28,5 +28,6 @@ void EnenmyCon(void)
 void EnemyDraw(void)
 {
 	DrawTurnGraph(40, 40, MaouImage, true);
+	ScreenFlip();
 }
 
