@@ -27,10 +27,10 @@ void TitleDraw(void)
 {
 	//ClsDrawScreen();
 	DrawGraph(0, 0, TitleImage, true);
-	if ((flamCnt / 40) % 2 == 0)
+	/*if ((flamCnt / 40) % 2 == 0)
 	{
 		DrawString(250, 400, "‚o‚k‚d‚`‚r‚d@‚r‚o‚`‚b‚d@‚j‚d‚x", GetColor(0, 255, 255));
 	}
 	flamCnt++;
-	ScreenFlip();
+	ScreenFlip();*/
 }
