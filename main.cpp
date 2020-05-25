@@ -78,17 +78,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		}
 		//TitleInit();
 		//GameMain();
-
 		gameCounte++;
 		ScreenFlip();
 	}
 	return 0;
 	DxLib_End();
+	
 }
 
 //@‰Šú‰»
 void SystemInit(void)
 {
+
 
 	// •Ô‚è’l—p•Ï”
 	bool rtnFlag = true;
