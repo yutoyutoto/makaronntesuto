@@ -4,6 +4,14 @@
 #define STOP 0			// 
 #define SHOT 1			// 
 
-void EnenmyCon(void);
-void EnemyDraw(void);
-void EnemyInt(void);
+#pragma once
+
+// 関数のプロトタイプ宣言
+void enemyInit(void);
+void enemyMove(void);
+void enemyDraw(void);
+
+// extern宣言
+
+
+

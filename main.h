@@ -3,12 +3,7 @@
 //   by 若永優斗
 //
 //#pragma once
-
-// 定数宣言
-#define SCREEN_SIZE_X 800
-#define SCREEN_SIZE_Y 600
-#define ANIM_IMAGE_MAX 4			// アニメーション数
-#define ANIM_SPEED 30				// アニメーション速度
+// デバックメッセージ用定数
 #ifdef _DEBUG
 #define AST() {\
 	CHAR ast_mes[256];\
@@ -18,23 +13,13 @@
 #else
 #define AST()
 #endif
-struct XY
-{
-	int x;
-	int y;
-};
 
-struct XY_F
-{
-	float x;
-	float y;
-};
 
 // enum定義
 enum SCN_ID
 {
 	SCN_ID_TITLE,			// タイトル
-	SCN_ID_CHARSEL,			// セレクト
+	SCN_ID_CHARSEL,			// セレクトシーン
 	SCN_ID_GAME,			// ゲームシーン
 	SCN_ID_GAMEOVER,		// ゲームオ－バー
 	SCN_ID_MAX
@@ -48,46 +33,44 @@ enum CHAR_ID
 	CHAR_ID_MAX
 };
 
+// 定数宣言
+#define SCREEN_SIZE_X 800			// 画面の横サイズ
+#define SCREEN_SIZE_Y 600			// 画面の縦サイズ
+#define PLAYER_MAX 3				// プレイヤー数
 
-// 敵
-enum ENEMY {
-	ENEMY_ID_MAOU,
-	ENEMY_ID_MEIDO,
-	ENEMY_ID_NINGYOU,
-	ENEMY_ID_MAMONO,
-	ENEMY_MAX
-}; struct CHARACTER {
-	XY pos;			//敵の位置（中心）
-	XY size;		//敵画像のサイズ
-	XY sizeOffset;		//敵中央からの左上位置
-	XY hitPosS;		//当たり判定用の左上
-	XY hitPosE;		//当たり判定用の右下
-	XY_F velocity;	// 敵の速度
+#define PLAYER_SIZE_X 32			// プレイヤーの横サイズ
+#define PLAYER_SIZE_Y 32			// プレイヤーの縦サイズ
 
-	int life;		//敵の体力
-	int lifeMax;		//敵の体力最大
-	int animCnt;		//敵のアニメーション用カウンタ
-	ENEMY type;			// 何らかの展開
+#define ANIM_IMAGE_MAX 4			// アニメーション数
+#define ANIM_SPEED 30				// アニメーション速度
 
-	bool visible;		// 表示状態
-	bool shotFlag;		//敵の状態（弾撃っているか？）
-	bool damageFlag;	//敵の状態（ダメージ受けているか？）
-	int imgLockCnt;		//敵のイメージ固定用カウンタ
+// ベクトル用の構造体
+struct Pos
+{
+	int x;			// X座標
+	int y;			// Y座標
 };
 
+struct XY
+{
+	int x;
+	int y;
+};
+
+// プレイヤー用の構造体
+struct Player
+{
+	Pos pos;					// 座標
+};
 
 // プロトタイプ宣言
-void GameMain(void);
-void GameDraw(void);
-
-void SystemInit(void);
-
-//void InitScene(void);
-
+void SisInit(void);
 void GetKeyState(void);
 
 // extern宣言
 extern SCN_ID scnID;
+extern bool rtnFlag;
 extern bool spacekeyFlag;
 extern bool spacekeyFlagOld;
 extern int flamCnt;
+

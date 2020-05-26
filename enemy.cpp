@@ -1,33 +1,33 @@
-#include "DxLib.h"
+#include <math.h>
+#include "Dxlib.h"
 #include "main.h"
 #include "enemy.h"
 
- 
-ENEMY enemy;
-
-int MaouImage;
-int MeidImage[2];
-int MamonoImage;
-int NingyouImage;
+// 変数の定義
+// イメージ用
+int maouImage;
 
 // 敵の初期化
-void EnemyInt(void)
+void enemyInit(void)
 {
-	MaouImage = LoadGraph("image/maou.png");
-	LoadGraph("image/mamono.png", MamonoImage);
-	LoadGraph("image/ningyou.png", NingyouImage);
-	MeidImage[STOP] = LoadGraph("image/maid2.png");
-	MeidImage[SHOT] = LoadGraph("image/maid.png");
+	bool rtnFlag = true;
+
+	maouImage = LoadGraph("Image/maou.png");
+	if (maouImage == -1)
+	{
+		AST();
+		rtnFlag = false;
+	}
 }
-// 敵のコントロール
-void EnenmyCon(void)
+
+// 敵の動き
+void enemyMove(void)
 {
 
 }
+
 // 敵の描画
-void EnemyDraw(void)
+void enemyDraw(void)
 {
-	DrawTurnGraph(40, 40, MaouImage, true);
-	ScreenFlip();
+	DrawGraph(0, 0, maouImage, true);
 }
-

@@ -17,9 +17,7 @@ int gumiImage;
 int eriImage;
 
 int playerAnimCnt;		// アニメーションの速さ
-
 int keyFlag;
-
 int Gravity;
 int jumpCnt;
 int jump2Cnt;
@@ -36,7 +34,6 @@ void playerInit(void)
 		AST();
 		rtnFlag = false;
 	}
-
 
 	if (LoadDivGraph("Image/hime2.bmp", ANIM_IMAGE_MAX, ANIM_IMAGE_MAX, 1,
 		PLAYER_SIZE_X, PLAYER_SIZE_Y, &playerImage[1][0]) == -1)
@@ -84,7 +81,7 @@ void playerInit(void)
 	player.pos.y = 500;
 	keyFlag = 0;
 
-	playerSpeed.x = 5;
+	playerSpeed.x = 2;
 	playerSpeed.y = 30;
 	Gravity = 2;
 	jumpCnt = 0;
@@ -142,16 +139,20 @@ void playerMove(void)
 // プレイヤーの描画
 void playerDraw(void)
 {
-	//ClsDrawScreen();		// 画面消去
+	ClsDrawScreen();		// 画面消去
 	/*if (playerAnimCnt == 4)
 	{
 		playerAnimCnt = 0;
 	}*/
 	playerAnimCnt++;
-	if (charNum == 0)
+	if ((charNum == 0) && (weaCnt == 1))
 	{
 		DrawGraph(player.pos.x, player.pos.y, playerImage[CHAR_ID_MURABITO][(playerAnimCnt / ANIM_SPEED) % 4], true);
-		//DrawGraph(player.pos.x + 20, player.pos.y - 10, kenImage, true);
+		DrawGraph(player.pos.x + 20, player.pos.y - 10, kenImage, true);
+	}
+	else if ((charNum == 0) && (weaCnt == 2))
+	{
+		DrawGraph(player.pos.x, player.pos.y, playerImage[CHAR_ID_MURABITO][(playerAnimCnt / ANIM_SPEED) % 4], true);
 		DrawGraph(player.pos.x + 20, player.pos.y, jyuuImage, true);
 	}
 	else

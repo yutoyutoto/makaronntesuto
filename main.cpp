@@ -4,14 +4,14 @@
 //
 #include "Dxlib.h"
 #include "main.h"
-#include "Stage.h"
-#include "enemy.h"
+#include "TitleScene.h"
+#include "SelectScene.h"
+#include "GameScen.h"
 #include "player.h"
-#include"GameOverScene.h"
-#include"TitleScene.h"
-#include"SelectScene.h"
+#include "enemy.h"
+#include "GameOverScene.h"
+#include "Stage.h"
 
-//変数
 
 //変数
 SCN_ID scnID;					// ｼｰﾝ管理
@@ -19,8 +19,10 @@ int gameCounte;
 
 bool spacekeyFlag;				// スペースキーの状態	
 bool spacekeyFlagOld;			// 1フレーム前のスペースキーの状態
+
 int flamCnt;
-//int jyu;
+
+
 // ========WinMain関数
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -36,17 +38,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	gameCounte = 0;
 
 	//---------　変数の初期化 ---------
-	SystemInit();
+	SisInit();
 	//--------- ゲームループ　---------
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
-		ClsDrawScreen(); // 画面処理
-
 		// メイン処理
-		GameMain();
-		gameCounte++;
-		ScreenFlip(); // 裏画面を表画面に瞬間コピー
-		TitleScene();
+		/*if (scnIDOld != scnID)
+		{
+			flamCnt = 0;
+		}
+		scnIDOld = scnID;*/
 		if (CheckHitKey(KEY_INPUT_RIGHT))
 		{
 			mapPos.x += 10;
@@ -67,7 +68,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			SelectScene();
 			break;
 		case SCN_ID_GAME:
-			GameMain();
+			GameScene();
 			break;
 		case SCN_ID_GAMEOVER:
 			GameOverScene();
@@ -78,57 +79,31 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		}
 		//TitleInit();
 		//GameMain();
+
 		gameCounte++;
 		ScreenFlip();
 	}
 	return 0;
 	DxLib_End();
-	
 }
 
-//　初期化
-void SystemInit(void)
+void SisInit(void)
 {
-
-
 	// 返り値用変数
 	bool rtnFlag = true;
 
 	spacekeyFlag = false;
 	spacekeyFlagOld = false;
 	playerInit();
+	enemyInit();
 	SelInit();
 	TitleInit();
 	StageSystemInit();
-	GameOverInit();
-	EnemyInt();
 	scnID = SCN_ID_TITLE;
-	//jyu = LoadGraph("image/jyuu2.bmp");
 }
-
 
 void GetKeyState(void)
 {
 	spacekeyFlagOld = spacekeyFlag;
 	spacekeyFlag = (bool)CheckHitKey(KEY_INPUT_SPACE);
-}
-
-
-// ゲームメイン
-void GameMain(void)
-{
-	GameDraw();
-}
-
-//　ゲーム描画
-void GameDraw(void)
-{
-	//TitleDraw();
-	
-	StageGameDraw();
-	EnemyDraw();
-	playerDraw();
-	GameOverDraw();
-	//ClsDrawScreen();
-	//DrawGraph(30, 20, jyu, true);
 }

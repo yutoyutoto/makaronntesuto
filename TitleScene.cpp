@@ -2,8 +2,12 @@
 #include "main.h"
 #include "TitleScene.h"
 #include "SelectScene.h"
+#include "GameScen.h"
 
+// 変数の定義
+// イメージ用
 int TitleImage;
+
 // タイトルシーンの初期化
 void TitleInit(void)
 {
@@ -25,13 +29,14 @@ void TitleScene(void)
 		scnID = SCN_ID_CHARSEL;
 		SelectScene();
 	}
+	flamCnt = 0;
 	TitleDraw();
 }
 
 // タイトルシーンの描画
 void TitleDraw(void)
 {
-	//ClsDrawScreen();
+	ClsDrawScreen();
 	DrawGraph(0, 0, TitleImage, true);
 	if ((flamCnt / 40) % 2 == 0)
 	{
