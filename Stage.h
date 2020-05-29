@@ -10,4 +10,7 @@ void StageGameDraw(void);
 void StageSystemInit(void);
 //void SetMapData(void);
 
+bool IsPass(XY pos);		// w’è‚³‚ê‚½À•W‚ª’Ê‰ß‰Â”\‚©‚ğ”»’f‚·‚é
+XY PosToIndex(XY pos);
+XY IndexToPos(XY index);
 extern XY mapPos;

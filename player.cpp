@@ -3,9 +3,10 @@
 #include "main.h"
 #include "SelectScene.h"
 #include "player.h"
+#include "Stage.h"
 
 // 変数の定義
-Player player;
+CHARACTER player;
 Pos playerSpeed;
 
 // イメージ用
@@ -76,11 +77,12 @@ void playerInit(void)
 		AST();
 		rtnFlag = false;
 	}
-
+	// プレイヤーの初期化
 	player.pos.x = 0;
 	player.pos.y = 500;
 	keyFlag = 0;
-
+	player.hitPosE = { 0,0 };
+	player.hitPosS = { 0,0 };
 	playerSpeed.x = 2;
 	playerSpeed.y = 30;
 	Gravity = 2;
@@ -90,8 +92,19 @@ void playerInit(void)
 
 
 // プレイヤーの動き
-void playerMove(void)
+int playerMove(int center)
 {
+	// プレイヤーの座標コピー
+	XY PlayerPosCopy = player.pos;
+	// プレイヤーの当たり判定
+	XY playerHitPos;
+	XY PlayerHitPosLeft;
+	XY PlayerHitPosRight;
+	XY PlayerHitPosBottom;
+	XY PlayerHitPosTop;
+	XY tempPos;
+
+	playerHitPos = PlayerPosCopy;
 	// 右移動
 	player.pos.x += 1;
 	// 1回目のジャンプの処理
@@ -133,13 +146,58 @@ void playerMove(void)
 		player.pos.x = 0;
 	}
 	// 剣の回転
+	
+		// プレイヤーとマップの当たり判定
+		PlayerHitPosBottom = playerHitPos;
+		PlayerHitPosTop = playerHitPos;
+		PlayerHitPosBottom.y += player.hitPosE.y - 1;
+		PlayerHitPosTop.y -= player.hitPosS.y;
+		PlayerHitPosLeft = playerHitPos;
+		PlayerHitPosLeft.y -= player.hitPosS.y;
+		PlayerHitPosRight = playerHitPos;
+		PlayerHitPosRight.x += player.hitPosE.x;
 
+			if (!IsPass(playerHitPos) || !IsPass(PlayerHitPosRight) || !IsPass(PlayerHitPosLeft))
+			{
+				// 頭上の判定
+				tempPos = PosToIndex(playerHitPos);
+				tempPos.y++;
+				tempPos = IndexToPos(tempPos);
+				PlayerPosCopy.y = tempPos.y + player.hitPosS.y;
+			}
+			// プレイヤーの足元の座標
+			playerHitPos.y = PlayerPosCopy.y + player.hitPosE.y;
+			PlayerHitPosRight = playerHitPos;
+			PlayerHitPosRight.x += player.hitPosE.x;
+			PlayerHitPosLeft = playerHitPos;
+			PlayerHitPosLeft.x -= player.hitPosS.x;
+			if (IsPass(playerHitPos) && IsPass(PlayerHitPosRight) && IsPass(PlayerHitPosLeft))
+			{
+				// ジャンプを続ける場合は座標を更新
+				player.pos.y = PlayerPosCopy.y;
+			}
+			else
+			{
+				// ジャンプを終了する場合は移動をキャンセル　&　ジャンプの停止
+				//player.jumpFlag = false;
+				// 床にきれいに乗る
+				player.pos.y = PosToIndex(PlayerPosCopy).y * CHIP_SIZE_Y;
+				//playerTime = 0.0f;
+			}
+			/*if (!player.jumpFlag)
+			{
+				if (CheckHitKey(KEY_INPUT_W) || CheckHitKey(KEY_INPUT_A))
+				{
+					player.jumpFlag = true;
+				}
+			}*/
+	return player.pos.y;
 }
 
 // プレイヤーの描画
 void playerDraw(void)
 {
-	ClsDrawScreen();		// 画面消去
+	//ClsDrawScreen();		// 画面消去
 	/*if (playerAnimCnt == 4)
 	{
 		playerAnimCnt = 0;
@@ -161,6 +219,6 @@ void playerDraw(void)
 		DrawGraph(player.pos.x, player.pos.y - 5, tueImage, true);
 	}
 	DrawGraph(0, 0, eriImage, true);
-	playerMove();
-	ScreenFlip();			// バックバッファをフロントバッファに入れ替える
+	//playerMove();
+	//ScreenFlip();			// バックバッファをフロントバッファに入れ替える
 }

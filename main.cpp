@@ -50,11 +50,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		scnIDOld = scnID;*/
 		if (CheckHitKey(KEY_INPUT_RIGHT))
 		{
-			mapPos.x += 10;
+			mapPos.x += 30;
 		}
 		if (CheckHitKey(KEY_INPUT_LEFT))
 		{
-			mapPos.x -= 10;
+			mapPos.x -= 30;
 		}
 
 		GetKeyState();

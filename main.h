@@ -25,12 +25,52 @@ enum SCN_ID
 	SCN_ID_MAX
 };
 
+// 移動用
+struct XY
+{
+	int x;
+	int y;
+};
+
+//struct XY_F
+//{
+//	float x;
+//	float y;
+//};
+
+enum DIR {
+	DIR_UP,					// 上移動
+	DIR_RIGHT,				// 右移動
+	DIR_MAX
+};
+
 // キャラの種別
 enum CHAR_ID
 {
 	CHAR_ID_MURABITO,
 	CHAR_ID_HIME,
 	CHAR_ID_MAX
+}; 
+struct CHARACTER {
+	DIR moveDir;		//向いている方向
+	XY pos;			//キャラクタの位置（中心）
+	XY size;		//キャラクタ画像のサイズ
+	XY sizeOffset;		//キャラクタ中央からの左上位置
+	XY hitPosS;		//当たり判定用の左上
+	XY hitPosE;		//当たり判定用の右下
+	//XY_F velocity;	// キャラクタの速度
+
+	int moveSpeed;		//キャラクタの移動量
+	int life;		//キャラクタの体力
+	int lifeMax;		//キャラクタの体力最大
+	int animCnt;		//キャラクタのアニメーション用カウンタ
+
+	//bool visible;		// 表示状態
+	bool runFlag;		//キャラクタの状態（走っているか？）
+	bool jumpFlag;		//キャラクタの状態（ジャンプしているか？）
+	bool shotFlag;		//キャラクタの状態（弾撃っているか？）
+	bool damageFlag;	//キャラクタの状態（ダメージ受けているか？）
+	int imgLockCnt;		//キャラクタのイメージ固定用カウンタ
 };
 
 // 定数宣言
@@ -51,17 +91,7 @@ struct Pos
 	int y;			// Y座標
 };
 
-struct XY
-{
-	int x;
-	int y;
-};
 
-// プレイヤー用の構造体
-struct Player
-{
-	Pos pos;					// 座標
-};
 
 // プロトタイプ宣言
 void SisInit(void);

@@ -2,7 +2,7 @@
 
 // 関数のプロトタイプ宣言
 void playerInit(void);
-void playerMove(void);
+int playerMove(int center);
 void playerDraw(void);
 
 // extern宣言
