@@ -32,6 +32,25 @@ struct XY
 	int y;
 };
 
+// ベクトル用の構造体
+struct Pos
+{
+	int x;			// X座標
+	int y;			// Y座標
+};
+
+
+struct Player
+{
+	Pos pos;					// 座標
+};
+
+// エネミー用の構造体
+struct Enemy
+{
+	Pos pos;					// 座標
+};
+
 //struct XY_F
 //{
 //	float x;
@@ -43,6 +62,7 @@ enum DIR {
 	DIR_RIGHT,				// 右移動
 	DIR_MAX
 };
+
 
 // キャラの種別
 enum CHAR_ID
@@ -81,15 +101,13 @@ struct CHARACTER {
 #define PLAYER_SIZE_X 32			// プレイヤーの横サイズ
 #define PLAYER_SIZE_Y 32			// プレイヤーの縦サイズ
 
+
+#define ENEMY_SIZE_X 60				// エネミーの横サイズ
+#define ENEMY_SIZE_Y 60				// エネミーの縦サイズ
+
 #define ANIM_IMAGE_MAX 4			// アニメーション数
 #define ANIM_SPEED 30				// アニメーション速度
 
-// ベクトル用の構造体
-struct Pos
-{
-	int x;			// X座標
-	int y;			// Y座標
-};
 
 
 
